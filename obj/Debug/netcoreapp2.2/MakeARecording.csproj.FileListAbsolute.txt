@@ -1,0 +1,14 @@
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/bin/Debug/netcoreapp2.2/MakeARecording.deps.json
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/bin/Debug/netcoreapp2.2/MakeARecording.runtimeconfig.json
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/bin/Debug/netcoreapp2.2/MakeARecording.runtimeconfig.dev.json
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/bin/Debug/netcoreapp2.2/MakeARecording.dll
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/bin/Debug/netcoreapp2.2/MakeARecording.pdb
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/obj/Debug/netcoreapp2.2/MakeARecording.csprojAssemblyReference.cache
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/obj/Debug/netcoreapp2.2/MakeARecording.csproj.CoreCompileInputs.cache
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/obj/Debug/netcoreapp2.2/MakeARecording.RazorAssemblyInfo.cache
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/obj/Debug/netcoreapp2.2/MakeARecording.RazorAssemblyInfo.cs
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/obj/Debug/netcoreapp2.2/MakeARecording.AssemblyInfoInputs.cache
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/obj/Debug/netcoreapp2.2/MakeARecording.AssemblyInfo.cs
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/obj/Debug/netcoreapp2.2/MakeARecording.RazorTargetAssemblyInfo.cache
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/obj/Debug/netcoreapp2.2/MakeARecording.dll
+/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/obj/Debug/netcoreapp2.2/MakeARecording.pdb

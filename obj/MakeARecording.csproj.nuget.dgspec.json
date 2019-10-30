@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/MakeARecording.csproj": {}
+  },
+  "projects": {
+    "/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/MakeARecording.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/MakeARecording.csproj",
+        "projectName": "MakeARecording",
+        "projectPath": "/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/MakeARecording.csproj",
+        "packagesPath": "/Users/gmiller/.nuget/packages/",
+        "outputPath": "/Users/gmiller/Workspaces/Vail/Persy/Tutorials/MakeARecording/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/gmiller/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "freeclimb-cs-sdk": {
+              "target": "Package",
+              "version": "[1.0.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
