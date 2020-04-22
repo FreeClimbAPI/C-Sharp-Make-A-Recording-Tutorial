@@ -15,7 +15,7 @@ To get started using a FreeClimb account, follow the instructions [here](https:/
 1. Install the nuget packages necessary using command:
 
    ```bash
-   $ dotnet add package freeclimb-cs-sdk --version 1.0.0.2
+   $ dotnet add package freeclimb-cs-sdk
    ```
 
 2. Configure environment variables
