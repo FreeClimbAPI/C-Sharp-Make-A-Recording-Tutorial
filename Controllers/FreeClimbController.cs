@@ -50,7 +50,7 @@ namespace MakeARecording.Controllers
         {
           // Set up App Credentails
           string accountId = System.Environment.GetEnvironmentVariable("ACCOUNT_ID");
-          string authToken = System.Environment.GetEnvironmentVariable("AUTH_TOKEN");
+          string apiKey = System.Environment.GetEnvironmentVariable("API_KEY");
 
           // Set up Call Details
           string applicationId = System.Environment.GetEnvironmentVariable("APPLICATION_ID");
@@ -59,7 +59,7 @@ namespace MakeARecording.Controllers
 
           try {
             // Create the PersyClient
-            FreeClimbClient client = new FreeClimbClient(accountId, authToken);
+            FreeClimbClient client = new FreeClimbClient(accountId, apiKey);
             // Create a Call
             Call call = client.getCallsRequester.create(phoneNumber, // To
                                                         freeClimbPhoneNumber, // From,
