@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using freeclimb.Api;
 using freeclimb.Model;
-using freeclimb.Enums;
 using System;
 using System.Collections.Generic;
 using freeclimb.Client;
+using freeclimb.Enums;
 
 namespace MakeARecording.Controllers
 {
-    [Route("voice")]
+    [Route("/voice")]
     [ApiController]
     public class FreeClimbController : ControllerBase
     {
@@ -41,136 +41,89 @@ namespace MakeARecording.Controllers
 
         // POST /voice/
         [HttpPost]
-        public ActionResult Post(CallResult request)
+        public string Post(CallStatus request)
         {
-            PerclScript script = new PerclScript(new List<PerclCommand>());
-            // Verify call is in the InProgress state
-            if (request.Status == CallStatus.IN_PROGRESS)
-            {
-                // Create PerCL say script with US English as the language
-                Say say = new Say("Hello. Please leave a message after the beep, then press one or hangup");
-                // say.setLanguage(ELanguage.EnglishUS);
-                // // Set prompt to record message
-                // say.setText();
-                // Add PerCL say script to PerCL container
-                script.Commands.Add(say);
-                // Create PerCL record utterance script
-                string messageDoneUrl = AppUrl + "/voice/MakeRecordMessageDone";
-                RecordUtterance recordUtterance = new RecordUtterance(messageDoneUrl, 0, "1", 2, true, false, false);
-                // Set indication that audible 'beep' should be used to signal start of recording
-                // recordUtterance.setPlayBeep(EBool.True);
-                // // Set indication that end of recording is touch tone key 0ne
-                // recordUtterance.setFinishOnKey(EFinishOnKey.One);
+            System.Console.WriteLine("Request Value: " + request);
+            // Create a PerCl script
+            PerclScript helloScript = new PerclScript(new List<PerclCommand>());
 
-                // Add PerCL record utterance script to PerCL container
-                script.Commands.Add(recordUtterance);
-            }
-            // Convert PerCL container to JSON and append to response
-            return Content(script.ToJson(), "application/json");
-        }
+            // Create a Say Command
+            Say sayHello = new Say("hello, freeclimb!");
+            Console.WriteLine(sayHello.ToJson());
+            // Add the command
+            helloScript.Commands.Add(sayHello);
 
-        // PUT api/values/5
-        // RPC call To start a call
-        [HttpPut]
-        public void Put([FromBody] string value)
-        {
-            // // Set up App Credentails
-            // string accountId = System.Environment.GetEnvironmentVariable("ACCOUNT_ID");
-            // string apiKey = System.Environment.GetEnvironmentVariable("API_KEY");
+            Console.WriteLine(helloScript.ToJson());
 
-            // // Set up Call Details
-            // string applicationId = System.Environment.GetEnvironmentVariable("APPLICATION_ID");
-            // string phoneNumber = "+" + value;
-            // string freeClimbPhoneNumber = "+Your FreeClimb Number";
+            // Respond to FreeClimb with your script
+            return helloScript.ToJson();
 
-            // try
+            // if (request == CallStatus.IN_PROGRESS)
             // {
-            //     // Create the PersyClient
-            //     FreeClimbClient client = new FreeClimbClient(accountId, apiKey);
-            //     // Create a Call
-            //     Call call = client.getCallsRequester.create(phoneNumber, // To
-            //                                                 freeClimbPhoneNumber, // From,
-            //                                                 applicationId); // Application to Handle the call
+            //     // Create a Say Command
+            //     Say say = new Say("Hello. Please leave a message after the beep, then press one or hangup");
+            //     Console.WriteLine(say.ToJson());
+            //     // Add the command
+            //     script.Commands.Add(say);
+
+            //     string messageDoneUrl = "https://4f35-63-209-137-19.ngrok.io/voice/MakeRecordMessageDone";
+            //     RecordUtterance recordUtterance = new RecordUtterance(messageDoneUrl, 0, "1", 2, true, false, false);
+            //     script.Commands.Add(recordUtterance);
+
+            //     Console.WriteLine(script.ToJson());
+
+            //     // Respond to FreeClimb with your script
             // }
-            // catch (FreeClimbException ex)
+            // else
             // {
-            //     System.Console.Write(ex.Message);
+            //     System.Console.WriteLine("Request Value: " + request);
             // }
-
-            Configuration config = new Configuration();
-            config.BasePath = "https://www.freeclimb.com/apiserver";
-            // Configure HTTP basic authorization: fc
-            config.Username = getAcctId();
-            config.Password = getApiKey();
-
-            var apiInstance = new DefaultApi(config);
-            string to = getToNumber();
-            string from = getFromNumber();
-            string appId = getAppID();
-            string callConnectUrl = getCallConnectURL();
-            MakeCallRequest makeCallRequest = new MakeCallRequest(from, to, appId);
-        }
-
-
-        [HttpPost("MakeRecordMessageDone")]
-        public ActionResult MakeRecordMessageDone(RecordingResult recordingUtteranceStatusCallback)
-        {
-            // Create an empty PerCL script container
-            PerclScript script = new PerclScript(new List<PerclCommand>());
-
-            if (Request != null)
-            {
-                // Check if recording was successful by checking if a recording identifier was provided
-                if (recordingUtteranceStatusCallback.RecordingId != null)
-                {
-                    // Recording was successful as recording identifier present in response
-
-                    // Create PerCL say script with US English as the language
-                    Say say = new Say("Thanks. The message has been recorded.");
-                    // say.setLanguage(ELanguage.EnglishUS);
-                    // // Set prompt to indicate message has been recorded
-                    // say.setText("Thanks. The message has been recorded.");
-
-                    // Add PerCL say script to PerCL container
-                    script.Commands.Add(say);
-                }
-                else
-                {
-                    // Recording was failed as there is no recording identifier present in response
-
-                    // Create PerCL say script with US English as the language
-                    Say say = new Say("Sorry we weren't able to record the message.");
-                    // say.setLanguage(ELanguage.EnglishUS);
-                    // // Set prompt to indicate message recording failed
-                    // say.setText("Sorry we weren't able to record the message.");
-
-                    // Add PerCL say script to PerCL container
-                    script.Commands.Add(say);
-                }
-
-                // Create PerCL pause script with a duration of 100 milliseconds
-                Pause pause = new Pause(100);
-
-                // Add PerCL pause script to PerCL container
-                script.Commands.Add(pause);
-
-                // Create PerCL say script with US English as the language
-                Say sayGoodbye = new Say("Goodbye");
-                // sayGoodbye.setLanguage(ELanguage.EnglishUS);
-                // Set prompt sayGoodbye.setText("Goodbye");
-
-                // Add PerCL say script to PerCL container
-                script.Commands.Add(sayGoodbye);
-
-                // Create PerCL hangup script
-                Hangup hangup = new Hangup();
-
-                // Add PerCL hangup script to PerCL container
-                script.Commands.Add(new Hangup());
-            }
-
-            // Convert PerCL container to JSON and append to response
-            return Content(script.ToJson(), "application/json");
+            // return script.ToJson();
         }
     }
+    // public ActionResult Post(CallStatus request)
+    // {
+    //     PerclScript helloScript = new PerclScript(new List<PerclCommand>());
+
+    //     // Create a Say Command
+    //     Say sayHello = new Say("hello, freeclimb!");
+    //     Console.WriteLine(sayHello.ToJson());
+    //     // Add the command
+    //     helloScript.Commands.Add(sayHello);
+
+    //     Console.WriteLine(helloScript.ToJson());
+
+    //     // Respond to FreeClimb with your script
+    //     return helloScript.ToJson();
+    //     // PerclScript script = new PerclScript(new List<PerclCommand>());
+    //     // Verify call is in the InProgress state
+    //     // if (request == CallDirection.OUTBOUND_API)
+    //     // {
+    //     //     // Create PerCL say script with US English as the language
+    //     //     Say say = new Say("Hello. Please leave a message after the beep, then press one or hangup");
+    //     //     // say.setLanguage(ELanguage.EnglishUS);
+    //     //     // // Set prompt to record message
+    //     //     // say.setText();
+    //     //     // Add PerCL say script to PerCL container
+    //     //     script.Commands.Add(say);
+    //     //     System.Console.WriteLine("Say has been added");
+    //     //     // Create PerCL record utterance script
+    //     //     string messageDoneUrl = "https://4f35-63-209-137-19.ngrok.io/voice/MakeRecordMessageDone";
+    //     //     RecordUtterance recordUtterance = new RecordUtterance(messageDoneUrl, 0, "1", 2, true, false, false);
+    //     //     // Set indication that audible 'beep' should be used to signal start of recording
+    //     //     // recordUtterance.setPlayBeep(EBool.True);
+    //     //     // // Set indication that end of recording is touch tone key 0ne
+    //     //     // recordUtterance.setFinishOnKey(EFinishOnKey.One);
+
+    //     //     // Add PerCL record utterance script to PerCL container
+    //     //     script.Commands.Add(recordUtterance);
+    //     // }
+    //     // else
+    //     // {
+    //     //     System.Console.WriteLine("Request Value: " + request);
+    //     //     System.Console.WriteLine("Didn't add commands since it skipped condition");
+    //     // }
+    //     // Convert PerCL container to JSON and append to response
+    //     return Content(script.ToJson(), "application/json");
+    // }
 }
