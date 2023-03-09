@@ -4,7 +4,9 @@ using freeclimb.Model;
 using System;
 using System.Collections.Generic;
 using freeclimb.Client;
-using freeclimb.Enums;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+//using freeclimb.Enums;
 
 namespace MakeARecording.Controllers
 {
@@ -41,7 +43,7 @@ namespace MakeARecording.Controllers
 
         // POST /voice/
         [HttpPost]
-        public string Post(CallStatus request)
+        public string Post([FromBody] CallResult request)
         {
             System.Console.WriteLine("Request Value: " + request);
             // Create a PerCl script
