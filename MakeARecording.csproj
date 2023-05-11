@@ -4,7 +4,7 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="freeclimb" Version="4.2.0" />
+    <PackageReference Include="freeclimb" Version="4.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.12" />
   </ItemGroup>
 </Project>
